@@ -1,0 +1,24 @@
+/* Hector Ramos */
+/* July 8, 2015 */
+@charset "utf-8";
+
+body {
+  background: url("http://i.imgur.com/v7X0tLG.jpg") cover;
+}
+
+div {
+  background-color: rgba(255, 255, 255, .85);
+  margin: 0 auto;
+  align: left;
+  text-align: left;
+}
+
+ol {
+  text-align: left;
+  /*padding: 0,0,0,0;
+  margin: 0,0,0,0;*/
+}
+
+#list {
+  text-align: left;
+}
