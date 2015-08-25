@@ -10,6 +10,8 @@ urlpatterns = [
   url(r'^register/$', views.register, name='register'),
 	url(r'^login/$', views.user_login, name='login'),
   url(r'^logout/$', views.user_logout, name='logout'),
+  #url(r'^create_task/$', views.create_task, name='create_task'),
+
 	#todo/<user>
 	url(r'^(?P<username>\w+)/$', views.user_profile, name='user_profile'),
 	#todo/user/task/

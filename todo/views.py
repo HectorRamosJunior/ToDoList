@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 
 from .models import UserProfile, Task
 from .forms import UserForm, UserProfileForm, TaskForm
+import json
 
 # Create your views here.
 def index(request):
@@ -24,33 +25,50 @@ def user_profile(request, username):
   user_profile = UserProfile.objects.get(user__username=username)
   error = False
 
-  if 'remove' in request.POST:
-    task_list = user_profile.task_set.all()
+  if request.method == 'POST':
 
-    for task in task_list:
-      if str(task.pk) in request.POST:
-        task.delete()
+    if request.POST.get("type") == "remove":
+      task_list = user_profile.task_set.all()
+      to_remove = request.POST.getlist("to_remove[]")
+      tasks_removed = []
+      response_data = {}
 
 
-  elif request.method == 'POST':
-    task_form = TaskForm(data=request.POST)
+      for task in task_list:
+        if str(task.pk) in to_remove:
+          tasks_removed.append(str(task.pk))
+          task.delete()
 
-    if task_form.is_valid():
-      task = task_form.save(commit=False)
-      task.user = user_profile
-      task.save()
-    else:
-      error = "Please enter text into the form"
-      print task_form.errors
+      response_data["tasks_removed"] = tasks_removed
+      return HttpResponse(
+          json.dumps(response_data),
+          content_type="application/json"
+      )
+
+    elif request.POST.get("type") == "create":
+
+        task_entry = request.POST.get("task_entry")
+
+        task = Task(user=user_profile, text= task_entry)
+        task.save()
+
+        response_data = {}
+
+        response_data["user_profile"] = user_profile.user.username
+        response_data["task_pk"] = task.id 
+        response_data["text"] = task.text
+
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+
   else:
     task_form = TaskForm()
-      
+    task_list = user_profile.task_set.all() 
+    context = {'user_profile': user_profile, 'task_list': task_list, 'error': error, 'task_form' : task_form}
 
-  task_list = user_profile.task_set.all() 
-  context = {'user_profile': user_profile, 'task_list': task_list, 'error': error}
-
-  return render(request, 'todo/user_profile.html', context)
-
+    return render(request, 'todo/user_profile.html', context)
 
 
 def register(request):

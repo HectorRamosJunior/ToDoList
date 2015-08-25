@@ -22,3 +22,8 @@ class TaskForm(forms.ModelForm):
   class Meta:
     model = Task
     fields = ('text',)
+    widgets = {
+        'text': forms.TextInput(
+            attrs={'name': 'text', 'required': True, 'placeholder': 'Enter Task Here!', 'autofocus' : True}
+        ),
+    }

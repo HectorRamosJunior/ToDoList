@@ -11,20 +11,20 @@
 	{% endif %}
 
 	<!-- Form used for entering the task objects -->
-	<form id="task_form" action="/todo/{{ user_profile.user.username }}/" method="post">
+	<form id="task_form" method="post">
 	  {% csrf_token %}
-	  <input type="text" name="text" placeholder="Enter Task Here!" size="50" autofocus/>
+	  {{ task_form.text }}
 	  <input type="submit" value="Submit"/>
 	</form>
 
 
 	<!-- Form used for deleting the checked task objects -->
-	<form id="remove_task" action="/todo/{{ user_profile.user.username }}/" method="post">
+	<form id="remove_task" method="post">
 
-		<ol>
+		<ol id="task_list">
 		{% for task in task_list %}
 
-		    <li> <input type="checkbox" id="list" name="{{ task.pk }}"> {{ task.text }}</li>
+		    <li name="{{ task.pk }}"> <input type="checkbox" name="{{ task.pk }}"> {{ task.text }}</li>
 
 		{% endfor %}
 		</ol>

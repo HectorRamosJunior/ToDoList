@@ -15,32 +15,10 @@ div {
   text-align: center;
 }
 
-input {
-  /* display: inline; */
+div ul {
+  text-align: left;
 }
 
-p {
-  text-align: center;
-}
-
-.toDo {
-  
-}
-
-#textfield {
-
-}
-
-#button {
-  
-}
-
-#removeButton {
-
-}
-
-#list {
-  text-align: center;
-  width: 250px;
-  margin: 0 auto;
+div ol {
+  text-align: left;
 }
