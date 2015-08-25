@@ -2,6 +2,7 @@
 {% block title %} {{ user_profile.user.username }}'s' ToDo List {% endblock title %}
 
 
+
 {% block content %}
 	<h1>{{ user_profile.user.username }}'s ToDo List:</h1>
 
@@ -34,5 +35,11 @@
 		<input type="submit" name="remove" value="Delete Selected" />
 
 	</form>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').css('background-image', 'url(http://7-themes.com/data_images/out/32/6877905-full-moon-wallpaper.jpg)');
+    });
+</script>
 	
 {% endblock content %}
