@@ -1,4 +1,4 @@
-# ToDoList Source Code
+# ToDoList Back-End Project
 
 Site can be found at http://hectorramosjr.com/todo/ . 
 The language used for the backend was Python, and the framework used was Django.
