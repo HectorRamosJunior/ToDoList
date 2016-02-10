@@ -39,7 +39,7 @@ function create_task() {
         success : function(json) {
             $textfield.val(''); // remove the value from the input
             console.log(json);
-            $task_list.append("<li name='"+json.task_pk+"'><input type='checkbox' name='"+json.task_pk+"'>" + json.text + "</li>");
+            $task_list.append("<li name='" + json.task_pk + "'><input type='checkbox' name='" + json.task_pk + "'>" + json.text + "</li>");
         },
 
         // handle a non-successful response
