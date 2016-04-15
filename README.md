@@ -1,6 +1,6 @@
 # ToDoList Back-End Project
 
-Site can be found at http://hectorramosjr.com/todo/ . 
+Site can be found at http://www.hectorramosjr.com/todo/ . 
 The language used for the backend was Python, and the framework used was Django.
 
 The front-end needs work visually, but the site features user authentication and provides each user their own unique to-do list.
